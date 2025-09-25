@@ -8,6 +8,8 @@ url: "https://qqpmzz.github.io"
 markdown: kramdown
 highlighter: rouge
 theme: minima
+sass:
+  style: expanded
 
 # 플러그인
 plugins:
@@ -25,3 +27,7 @@ github_username: qqpmzz
 
 # 포스트 설정
 show_excerpts: true
+
+# 빌드 제외
+exclude:
+  - _site

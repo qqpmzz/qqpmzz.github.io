@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title | escape }} - {{ site.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+    
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        header h1 { 
+            font-size: 2.5rem; 
+            margin: 0; 
+            font-weight: bold;
+        }
+        header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { 
+            color: #2e86de; 
+            border-bottom: 2px solid #f0f0f0; 
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 { color: #2c3e50; }
+        .post-meta {
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .nav {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .nav a {
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            background: #f8f9fa;
+            text-decoration: none;
+            border-radius: 5px;
+            color: #2e86de;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            background: #e9ecef;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            border: 1px solid #e9ecef;
+        }
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            background: #f8f9fa;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .post-list {
+            margin-top: 2rem;
+        }
+        .post-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .post-item:last-child {
+            border-bottom: none;
+        }
+        .post-item h3 {
+            margin: 0 0 0.5rem 0;
+        }
+        .post-item a {
+            color: #2e86de;
+            text-decoration: none;
+        }
+        .post-item a:hover {
+            text-decoration: underline;
+        }
+        .welcome-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid #e9ecef;
+            color: #666;
+        }
+        footer a {
+            color: #2e86de;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* 포스트 제목 스타일 */
+        .post-title {
+            color: #2e86de;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        /* 포스트 내용 스타일 */
+        .post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .post-content h1,
+        .post-content h2,
+        .post-content h3 {
+            color: #2c3e50;
+            margin-top: 2rem;
+        }
+        
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .post-title {
+                font-size: 2rem;
+            }
+            .nav a {
+                margin: 0.5rem;
+                display: inline-block;
+            }
+        }
+    </style>
+    
+    {% if jekyll.environment == 'production' and site.google_analytics %}
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', '{{ site.google_analytics }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
+</head>
+<body>
+    <header>
+        <h1><a href="{{ "/" | relative_url }}" style="color: white; text-decoration: none;">📝 {{ site.title | escape }}</a></h1>
+        <p>{{ site.description | escape }}</p>
+    </header>
+
+    <nav class="nav">
+        <a href="{{ "/" | relative_url }}">홈</a>
+        <a href="{{ "/about/" | relative_url }}">소개</a>
+        <a href="{{ "/archive/" | relative_url }}">글 목록</a>
+    </nav>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer>
+        <p>© {{ "now" | date: "%Y" }} {{ site.title | escape }}. Made with ❤️ using Jekyll & GitHub Pages</p>
+        {% if site.github_username %}
+        <p><a href="https://github.com/{{ site.github_username }}" target="_blank">GitHub</a></p>
+        {% endif %}
+    </footer>
+</body>
+</html>
