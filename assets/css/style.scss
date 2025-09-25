@@ -1,0 +1,89 @@
+---
+---
+
+@import "minima";
+
+/* 커스텀 스타일 */
+.site-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-top: none;
+}
+
+.site-title {
+  color: white !important;
+  font-weight: bold;
+}
+
+.site-nav .page-link {
+  color: white !important;
+}
+
+/* 포스트 스타일 */
+.post-title {
+  color: #2e86de;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.post-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+  color: #2c3e50;
+  margin-top: 2rem;
+}
+
+/* 코드 블록 스타일 */
+.highlight {
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.highlighter-rouge .highlight {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* 인용구 스타일 */
+blockquote {
+  border-left: 4px solid #667eea;
+  background: #f8f9fa;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 포스트 메타 정보 */
+.post-meta {
+  color: #6c757d;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* 포스트 목록 스타일 */
+.post-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.post-item:last-child {
+  border-bottom: none;
+}
+
+.post-item h3 a {
+  color: #2e86de;
+  text-decoration: none;
+}
+
+.post-item h3 a:hover {
+  color: #1e6091;
+  text-decoration: underline;
+}

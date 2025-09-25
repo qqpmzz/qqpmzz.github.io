@@ -1,0 +1,27 @@
+# Jekyll 블로그 설정
+title: "내 개발 블로그"
+description: "개발과 일상을 기록하는 블로그입니다"
+baseurl: ""
+url: "https://qqpmzz.github.io"
+
+# 빌드 설정
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# 플러그인
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 네비게이션 메뉴
+header_pages:
+  - about.md
+  - archive.md
+
+# 소셜 링크
+github_username: qqpmzz
+
+# 포스트 설정
+show_excerpts: true
