@@ -1,0 +1,40 @@
+# Site settings
+title: My GitHub Pages
+description: Welcome to my simple Jekyll site
+baseurl: ""
+url: "https://qqpmzz.github.io"
+
+# Build settings
+markdown: kramdown
+# theme: minima  # 커스텀 레이아웃 사용을 위해 테마 비활성화
+
+# Syntax highlighting
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: text
+    css_class: 'highlight'
+    line_numbers: true
+
+# Collections
+collections:
+  dev:
+    output: true
+    permalink: /dev/:name/
+  life:
+    output: true
+    permalink: /life/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "dev"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "life"
+    values:
+      layout: "default"

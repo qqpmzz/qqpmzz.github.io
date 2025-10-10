@@ -1,0 +1,344 @@
+﻿/* ===== MONOKAI THEME ===== */
+/* Monokai Light */
+[data-theme="light"][data-code-theme="monokai"] .highlight,
+[data-theme="light"][data-code-theme="monokai"] .highlight .w {
+    color: #3e3d32;
+}
+
+[data-theme="light"][data-code-theme="monokai"] .highlight .k,
+[data-theme="light"][data-code-theme="monokai"] .highlight .kd,
+[data-theme="light"][data-code-theme="monokai"] .highlight .kn,
+[data-theme="light"][data-code-theme="monokai"] .highlight .kp,
+[data-theme="light"][data-code-theme="monokai"] .highlight .kr,
+[data-theme="light"][data-code-theme="monokai"] .highlight .kt,
+[data-theme="light"][data-code-theme="monokai"] .highlight .kv {
+    color: #f92672;
+}
+
+[data-theme="light"][data-code-theme="monokai"] .highlight .s,
+[data-theme="light"][data-code-theme="monokai"] .highlight .sa,
+[data-theme="light"][data-code-theme="monokai"] .highlight .sc,
+[data-theme="light"][data-code-theme="monokai"] .highlight .dl,
+[data-theme="light"][data-code-theme="monokai"] .highlight .sd,
+[data-theme="light"][data-code-theme="monokai"] .highlight .s2,
+[data-theme="light"][data-code-theme="monokai"] .highlight .se,
+[data-theme="light"][data-code-theme="monokai"] .highlight .sh,
+[data-theme="light"][data-code-theme="monokai"] .highlight .sx,
+[data-theme="light"][data-code-theme="monokai"] .highlight .s1,
+[data-theme="light"][data-code-theme="monokai"] .highlight .ss {
+    color: #e6db74;
+}
+
+[data-theme="light"][data-code-theme="monokai"] .highlight .nf,
+[data-theme="light"][data-code-theme="monokai"] .highlight .fm {
+    color: #a6e22e;
+}
+
+[data-theme="light"][data-code-theme="monokai"] .highlight .c,
+[data-theme="light"][data-code-theme="monokai"] .highlight .ch,
+[data-theme="light"][data-code-theme="monokai"] .highlight .cd,
+[data-theme="light"][data-code-theme="monokai"] .highlight .cm,
+[data-theme="light"][data-code-theme="monokai"] .highlight .cp,
+[data-theme="light"][data-code-theme="monokai"] .highlight .cpf,
+[data-theme="light"][data-code-theme="monokai"] .highlight .c1,
+[data-theme="light"][data-code-theme="monokai"] .highlight .cs {
+    color: #75715e;
+}
+
+[data-theme="light"][data-code-theme="monokai"] .highlight .l,
+[data-theme="light"][data-code-theme="monokai"] .highlight .m,
+[data-theme="light"][data-code-theme="monokai"] .highlight .mi {
+    color: #ae81ff;
+}
+
+[data-theme="light"][data-code-theme="monokai"] .highlight .nc,
+[data-theme="light"][data-code-theme="monokai"] .highlight .nb {
+    color: #66d9ef;
+}
+
+/* Monokai Dark */
+[data-theme="dark"][data-code-theme="monokai"] .highlight,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .w {
+    color: #f8f8f2;
+}
+
+[data-theme="dark"][data-code-theme="monokai"] .highlight .k,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .kd,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .kn,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .kp,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .kr,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .kt,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .kv {
+    color: #f92672;
+}
+
+[data-theme="dark"][data-code-theme="monokai"] .highlight .s,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .sa,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .sc,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .dl,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .sd,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .s2,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .se,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .sh,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .sx,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .s1,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .ss {
+    color: #e6db74;
+}
+
+[data-theme="dark"][data-code-theme="monokai"] .highlight .nf,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .fm {
+    color: #a6e22e;
+}
+
+[data-theme="dark"][data-code-theme="monokai"] .highlight .c,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .ch,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .cd,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .cm,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .cp,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .cpf,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .c1,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .cs {
+    color: #75715e;
+}
+
+[data-theme="dark"][data-code-theme="monokai"] .highlight .l,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .m,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .mi {
+    color: #ae81ff;
+}
+
+[data-theme="dark"][data-code-theme="monokai"] .highlight .nc,
+[data-theme="dark"][data-code-theme="monokai"] .highlight .nb {
+    color: #66d9ef;
+}
+
+/* ===== ONE DARK THEME ===== */
+/* One Dark Light */
+[data-theme="light"][data-code-theme="onedark"] .highlight,
+[data-theme="light"][data-code-theme="onedark"] .highlight .w {
+    color: #383a42;
+}
+
+[data-theme="light"][data-code-theme="onedark"] .highlight .k,
+[data-theme="light"][data-code-theme="onedark"] .highlight .kd,
+[data-theme="light"][data-code-theme="onedark"] .highlight .kn,
+[data-theme="light"][data-code-theme="onedark"] .highlight .kp,
+[data-theme="light"][data-code-theme="onedark"] .highlight .kr,
+[data-theme="light"][data-code-theme="onedark"] .highlight .kt,
+[data-theme="light"][data-code-theme="onedark"] .highlight .kv {
+    color: #a626a4;
+}
+
+[data-theme="light"][data-code-theme="onedark"] .highlight .s,
+[data-theme="light"][data-code-theme="onedark"] .highlight .sa,
+[data-theme="light"][data-code-theme="onedark"] .highlight .sc,
+[data-theme="light"][data-code-theme="onedark"] .highlight .dl,
+[data-theme="light"][data-code-theme="onedark"] .highlight .sd,
+[data-theme="light"][data-code-theme="onedark"] .highlight .s2,
+[data-theme="light"][data-code-theme="onedark"] .highlight .se,
+[data-theme="light"][data-code-theme="onedark"] .highlight .sh,
+[data-theme="light"][data-code-theme="onedark"] .highlight .sx,
+[data-theme="light"][data-code-theme="onedark"] .highlight .s1,
+[data-theme="light"][data-code-theme="onedark"] .highlight .ss {
+    color: #50a14f;
+}
+
+[data-theme="light"][data-code-theme="onedark"] .highlight .nf,
+[data-theme="light"][data-code-theme="onedark"] .highlight .fm {
+    color: #4078f2;
+}
+
+[data-theme="light"][data-code-theme="onedark"] .highlight .c,
+[data-theme="light"][data-code-theme="onedark"] .highlight .ch,
+[data-theme="light"][data-code-theme="onedark"] .highlight .cd,
+[data-theme="light"][data-code-theme="onedark"] .highlight .cm,
+[data-theme="light"][data-code-theme="onedark"] .highlight .cp,
+[data-theme="light"][data-code-theme="onedark"] .highlight .cpf,
+[data-theme="light"][data-code-theme="onedark"] .highlight .c1,
+[data-theme="light"][data-code-theme="onedark"] .highlight .cs {
+    color: #a0a1a7;
+}
+
+[data-theme="light"][data-code-theme="onedark"] .highlight .l,
+[data-theme="light"][data-code-theme="onedark"] .highlight .m,
+[data-theme="light"][data-code-theme="onedark"] .highlight .mi {
+    color: #986801;
+}
+
+[data-theme="light"][data-code-theme="onedark"] .highlight .nc,
+[data-theme="light"][data-code-theme="onedark"] .highlight .nb {
+    color: #c18401;
+}
+
+/* One Dark Dark */
+[data-theme="dark"][data-code-theme="onedark"] .highlight,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .w {
+    color: #abb2bf;
+}
+
+[data-theme="dark"][data-code-theme="onedark"] .highlight .k,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .kd,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .kn,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .kp,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .kr,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .kt,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .kv {
+    color: #c678dd;
+}
+
+[data-theme="dark"][data-code-theme="onedark"] .highlight .s,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .sa,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .sc,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .dl,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .sd,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .s2,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .se,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .sh,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .sx,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .s1,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .ss {
+    color: #98c379;
+}
+
+[data-theme="dark"][data-code-theme="onedark"] .highlight .nf,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .fm {
+    color: #61afef;
+}
+
+[data-theme="dark"][data-code-theme="onedark"] .highlight .c,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .ch,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .cd,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .cm,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .cp,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .cpf,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .c1,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .cs {
+    color: #5c6370;
+}
+
+[data-theme="dark"][data-code-theme="onedark"] .highlight .l,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .m,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .mi {
+    color: #d19a66;
+}
+
+[data-theme="dark"][data-code-theme="onedark"] .highlight .nc,
+[data-theme="dark"][data-code-theme="onedark"] .highlight .nb {
+    color: #e5c07b;
+}
+
+/* ===== DRACULA THEME ===== */
+/* Dracula Light */
+[data-theme="light"][data-code-theme="dracula"] .highlight,
+[data-theme="light"][data-code-theme="dracula"] .highlight .w {
+    color: #44475a;
+}
+
+[data-theme="light"][data-code-theme="dracula"] .highlight .k,
+[data-theme="light"][data-code-theme="dracula"] .highlight .kd,
+[data-theme="light"][data-code-theme="dracula"] .highlight .kn,
+[data-theme="light"][data-code-theme="dracula"] .highlight .kp,
+[data-theme="light"][data-code-theme="dracula"] .highlight .kr,
+[data-theme="light"][data-code-theme="dracula"] .highlight .kt,
+[data-theme="light"][data-code-theme="dracula"] .highlight .kv {
+    color: #8859a3;
+}
+
+[data-theme="light"][data-code-theme="dracula"] .highlight .s,
+[data-theme="light"][data-code-theme="dracula"] .highlight .sa,
+[data-theme="light"][data-code-theme="dracula"] .highlight .sc,
+[data-theme="light"][data-code-theme="dracula"] .highlight .dl,
+[data-theme="light"][data-code-theme="dracula"] .highlight .sd,
+[data-theme="light"][data-code-theme="dracula"] .highlight .s2,
+[data-theme="light"][data-code-theme="dracula"] .highlight .se,
+[data-theme="light"][data-code-theme="dracula"] .highlight .sh,
+[data-theme="light"][data-code-theme="dracula"] .highlight .sx,
+[data-theme="light"][data-code-theme="dracula"] .highlight .s1,
+[data-theme="light"][data-code-theme="dracula"] .highlight .ss {
+    color: #d98c10;
+}
+
+[data-theme="light"][data-code-theme="dracula"] .highlight .nf,
+[data-theme="light"][data-code-theme="dracula"] .highlight .fm {
+    color: #3d7a8c;
+}
+
+[data-theme="light"][data-code-theme="dracula"] .highlight .c,
+[data-theme="light"][data-code-theme="dracula"] .highlight .ch,
+[data-theme="light"][data-code-theme="dracula"] .highlight .cd,
+[data-theme="light"][data-code-theme="dracula"] .highlight .cm,
+[data-theme="light"][data-code-theme="dracula"] .highlight .cp,
+[data-theme="light"][data-code-theme="dracula"] .highlight .cpf,
+[data-theme="light"][data-code-theme="dracula"] .highlight .c1,
+[data-theme="light"][data-code-theme="dracula"] .highlight .cs {
+    color: #8c92a3;
+}
+
+[data-theme="light"][data-code-theme="dracula"] .highlight .l,
+[data-theme="light"][data-code-theme="dracula"] .highlight .m,
+[data-theme="light"][data-code-theme="dracula"] .highlight .mi {
+    color: #8859a3;
+}
+
+[data-theme="light"][data-code-theme="dracula"] .highlight .nc,
+[data-theme="light"][data-code-theme="dracula"] .highlight .nb {
+    color: #3d7a8c;
+}
+
+/* Dracula Dark */
+[data-theme="dark"][data-code-theme="dracula"] .highlight,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .w {
+    color: #f8f8f2;
+}
+
+[data-theme="dark"][data-code-theme="dracula"] .highlight .k,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .kd,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .kn,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .kp,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .kr,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .kt,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .kv {
+    color: #ff79c6;
+}
+
+[data-theme="dark"][data-code-theme="dracula"] .highlight .s,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .sa,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .sc,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .dl,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .sd,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .s2,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .se,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .sh,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .sx,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .s1,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .ss {
+    color: #f1fa8c;
+}
+
+[data-theme="dark"][data-code-theme="dracula"] .highlight .nf,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .fm {
+    color: #50fa7b;
+}
+
+[data-theme="dark"][data-code-theme="dracula"] .highlight .c,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .ch,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .cd,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .cm,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .cp,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .cpf,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .c1,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .cs {
+    color: #6272a4;
+}
+
+[data-theme="dark"][data-code-theme="dracula"] .highlight .l,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .m,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .mi {
+    color: #bd93f9;
+}
+
+[data-theme="dark"][data-code-theme="dracula"] .highlight .nc,
+[data-theme="dark"][data-code-theme="dracula"] .highlight .nb {
+    color: #8be9fd;
+}

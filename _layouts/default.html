@@ -1,0 +1,2269 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+
+    <!-- Rouge Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/syntax.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/syntax-themes.css' | relative_url }}">
+
+    <style>
+        :root {
+            /* 버튼 크기 */
+            --button-size: 20px;
+            /* 간격 변수 */
+            --spacing-outer: 10px;
+            /* 화면 가장자리 여백 */
+            --spacing-inner: 10px;
+            /* 요소 간 여백 */
+
+            /* 라이트 테마 색상 */
+            --bg-primary: #e8e8e8;
+            --bg-secondary: #f0f0f0;
+            --bg-tertiary: rgba(255, 255, 255, 0.9);
+            --text-primary: #333;
+            --text-secondary: #555;
+            --text-tertiary: #999;
+            --border-color: #d0d0d0;
+            --border-secondary: #c0c0c0;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(255, 255, 255, 0.95);
+            --link-color: #007bff;
+            --link-color-light: rgba(0, 123, 255, 0.7);
+            /* TOC h2용 */
+            --link-color-lighter: rgba(0, 123, 255, 0.5);
+            /* TOC h3용 */
+            --button-bg: #f8f9fa;
+            --button-hover-bg: #e8f0fe;
+            --button-active-bg: #d2e3fc;
+            --toc-title-color: #5a5a5a;
+        }
+
+        [data-theme="dark"] {
+            /* 다크 테마 색상 */
+            --bg-primary: #2b2b2b;
+            --bg-secondary: #333333;
+            --bg-tertiary: rgba(255, 255, 255, 0.08);
+            --text-primary: #e8e8e8;
+            --text-secondary: #b8b8b8;
+            --text-tertiary: #888888;
+            --border-color: #4a4a4a;
+            --border-secondary: #5a5a5a;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-bg: rgba(255, 255, 255, 0.12);
+            --link-color: #58a6ff;
+            --link-color-light: rgba(88, 166, 255, 0.7);
+            /* TOC h2용 */
+            --link-color-lighter: rgba(88, 166, 255, 0.5);
+            /* TOC h3용 */
+            --button-bg: #3b3b3b;
+            --button-hover-bg: #484848;
+            --button-active-bg: #555555;
+            --toc-title-color: #a8a8a8;
+        }
+
+        /* 클린 화이트 테마 - 깔끔하고 모던한 흰색 */
+        [data-color="white"] {
+            --bg-primary: #f7f9fb;
+            --bg-secondary: #fdfdfe;
+            --bg-tertiary: #ffffff;
+            --border-color: #e1e4e8;
+            --border-secondary: #d1d5da;
+            --link-color: #0969da;
+            --link-color-light: rgba(9, 105, 218, 0.7);
+            --link-color-lighter: rgba(9, 105, 218, 0.5);
+            --button-bg: #f6f8fa;
+            --button-hover-bg: #eef2f6;
+            --button-active-bg: #dfe5eb;
+            --code-header-bg: #f6f8fa;
+        }
+
+        /* 미드나잇 테마 - 깊고 세련된 다크 */
+        [data-theme="dark"][data-color="white"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #1c2128;
+            --border-color: #30363d;
+            --border-secondary: #424a53;
+            --link-color: #58a6ff;
+            --link-color-light: rgba(88, 166, 255, 0.7);
+            --link-color-lighter: rgba(88, 166, 255, 0.5);
+            --button-bg: #21262d;
+            --button-hover-bg: #2d333b;
+            --button-active-bg: #373e47;
+            --code-header-bg: #1c2128;
+        }
+
+        /* 소프트 핑크 테마 - 부드럽고 따뜻한 핑크 */
+        [data-color="pink"] {
+            --bg-primary: #fff5f7;
+            --bg-secondary: #fffbfc;
+            --bg-tertiary: #ffffff;
+            --border-color: #ffd6e0;
+            --border-secondary: #ffc2d1;
+            --link-color: #d73a84;
+            --link-color-light: rgba(215, 58, 132, 0.7);
+            --link-color-lighter: rgba(215, 58, 132, 0.5);
+            --button-bg: #fff0f4;
+            --button-hover-bg: #ffe3ec;
+            --button-active-bg: #ffd6e0;
+            --code-header-bg: #fff0f4;
+        }
+
+        /* 로즈 다크 테마 - 우아한 로즈 다크 */
+        [data-theme="dark"][data-color="pink"] {
+            --bg-primary: #2d1b24;
+            --bg-secondary: #3a232e;
+            --bg-tertiary: #472b38;
+            --border-color: #5c3a4a;
+            --border-secondary: #6e465a;
+            --link-color: #ffa7c4;
+            --link-color-light: rgba(255, 167, 196, 0.7);
+            --link-color-lighter: rgba(255, 167, 196, 0.5);
+            --button-bg: #3f2832;
+            --button-hover-bg: #4d323d;
+            --button-active-bg: #5b3c48;
+            --code-header-bg: #3a232e;
+        }
+
+        /* 오션 블루 테마 - 신선하고 깨끗한 블루 */
+        [data-color="skyblue"] {
+            --bg-primary: #f0f8ff;
+            --bg-secondary: #f7fbfe;
+            --bg-tertiary: #ffffff;
+            --border-color: #c8e1f5;
+            --border-secondary: #b3d4ec;
+            --link-color: #0969da;
+            --link-color-light: rgba(9, 105, 218, 0.7);
+            --link-color-lighter: rgba(9, 105, 218, 0.5);
+            --button-bg: #e6f3fb;
+            --button-hover-bg: #d9ecf7;
+            --button-active-bg: #c8e1f5;
+            --code-header-bg: #e6f3fb;
+        }
+
+        /* 딥 오션 테마 - 깊고 차분한 블루 */
+        [data-theme="dark"][data-color="skyblue"] {
+            --bg-primary: #0a1929;
+            --bg-secondary: #132f4c;
+            --bg-tertiary: #1a3f5f;
+            --border-color: #2e5372;
+            --border-secondary: #3d6485;
+            --link-color: #66b2ff;
+            --link-color-light: rgba(102, 178, 255, 0.7);
+            --link-color-lighter: rgba(102, 178, 255, 0.5);
+            --button-bg: #1e4976;
+            --button-hover-bg: #275a8a;
+            --button-active-bg: #316b9e;
+            --code-header-bg: #152f4c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: var(--spacing-outer);
+            gap: var(--spacing-inner);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* 상단 레이아웃 */
+        .header-section {
+            flex: 0 0 auto;
+            background-color: var(--bg-tertiary);
+            padding: var(--spacing-inner);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: var(--spacing-inner);
+            overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .header-left {
+            flex: 0 0 auto;
+            background-color: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: var(--spacing-inner);
+            position: relative;
+        }
+
+        .menu-button {
+            width: 30px;
+            height: 30px;
+            background: var(--button-bg);
+            border: 1px solid var(--border-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 16px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px var(--shadow-color);
+        }
+
+        .menu-button:hover {
+            background: var(--button-hover-bg);
+            border-color: var(--link-color);
+            color: var(--link-color);
+            transform: scale(1.05);
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .menu-button:active {
+            background: var(--button-active-bg);
+            transform: scale(0.95);
+            box-shadow: 0 1px 2px var(--shadow-color);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            padding: 8px 4px;
+            min-width: 200px;
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown-menu.show {
+            display: flex;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+
+        .menu-item:hover {
+            background: var(--hover-bg);
+            color: var(--link-color);
+        }
+
+        .menu-item-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .site-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--text-primary);
+            white-space: nowrap;
+            transition: color 0.3s ease, transform 0.2s ease;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .site-title:hover {
+            color: var(--link-color);
+            transform: scale(1.02);
+        }
+
+        .square-button {
+            width: var(--button-size);
+            height: var(--button-size);
+            background: var(--button-bg);
+            border: 1px solid var(--border-secondary);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px var(--shadow-color);
+        }
+
+        .square-button:hover {
+            background: var(--button-hover-bg);
+            border-color: var(--link-color);
+            color: var(--link-color);
+            transform: scale(1.08);
+            box-shadow: 0 2px 6px var(--shadow-color);
+        }
+
+        .square-button:active {
+            background: var(--button-active-bg);
+            transform: scale(0.95);
+            box-shadow: 0 1px 2px var(--shadow-color);
+        }
+
+        .header-center {
+            flex: 1;
+            background-color: transparent;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock-display {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .clock-display span {
+            display: inline-block;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        .header-right {
+            flex: 0 0 auto;
+            background-color: transparent;
+            padding: 0;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* 중단 레이아웃 */
+        .content-section {
+            flex: 1;
+            display: flex;
+            gap: var(--spacing-inner);
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .content-left {
+            flex: 0 0 250px;
+            transition: flex-basis 0.3s ease, opacity 0.3s ease 0.3s, margin 0.3s ease 0.3s;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-inner);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            opacity: 1;
+        }
+
+        .content-left::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-left.collapsed {
+            opacity: 0;
+            flex-basis: 0;
+            margin-right: calc(-1 * var(--spacing-inner));
+            transition: opacity 0.3s ease, flex-basis 0.3s ease 0.3s, margin 0.3s ease 0.3s;
+            pointer-events: none;
+        }
+
+        .content-left>*:first-child {
+            margin-top: 0;
+        }
+
+        .content-left>*:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-item {
+            background-color: var(--bg-tertiary);
+            padding: var(--spacing-inner);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .sidebar-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: var(--spacing-inner);
+        }
+
+        .item-collapse-button {
+            width: var(--button-size);
+            height: var(--button-size);
+            background: var(--button-bg);
+            border: 1px solid var(--border-secondary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--text-secondary);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 1px 2px var(--shadow-color);
+        }
+
+        .item-collapse-button:hover {
+            background: var(--button-hover-bg);
+            border-color: var(--link-color);
+            color: var(--link-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transform: scale(1.08);
+        }
+
+        .item-collapse-button:active {
+            background: var(--button-active-bg);
+            transform: scale(0.95);
+            box-shadow: 0 1px 2px var(--shadow-color);
+        }
+
+        .sidebar-item-content {
+            margin-top: var(--spacing-inner);
+            padding-top: var(--spacing-inner);
+            border-top: 1px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+
+        .sidebar-item-content.collapsed {
+            display: none;
+        }
+
+        /* 사이드바 링크 스타일 */
+        .sidebar-item-header a {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-item-header a:hover {
+            color: #007bff;
+        }
+
+        /* 카테고리 항목 스타일 */
+        .category-header {
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .category-header:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .category-header span {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .category-toggle {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--button-bg);
+            border: 1px solid var(--border-secondary);
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .category-toggle:hover {
+            background-color: var(--button-hover-bg);
+            border-color: var(--link-color);
+            color: var(--link-color);
+            transform: scale(1.1);
+        }
+
+        .category-item {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 12px;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 2px var(--shadow-color);
+        }
+
+        .category-item:hover {
+            background-color: var(--hover-bg);
+            border-color: var(--border-secondary);
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transform: translateX(3px);
+        }
+
+        /* 최신 글 카드 스타일 */
+        .recent-post-card {
+            background: var(--bg-tertiary);
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px var(--shadow-color);
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+            color: var(--text-primary);
+        }
+
+        .recent-post-card:hover {
+            box-shadow: 0 2px 6px var(--shadow-color);
+            transform: translateY(-2px);
+            border-color: var(--border-secondary);
+        }
+
+        .recent-post-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .recent-post-meta {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* 날짜와 카테고리를 양쪽 끝으로 */
+            gap: 6px;
+            flex-wrap: nowrap;
+            /* 줄바꿈 방지 */
+            transition: color 0.3s ease;
+        }
+
+        /* 메뉴 옵션 스타일 */
+        .menu-option:hover {
+            background: var(--hover-bg) !important;
+            color: var(--link-color);
+            transform: translateX(4px);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        /* 토글 스위치 스타일 */
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: var(--link-color);
+        }
+
+        /* 화이트 테마일 때 토글 스위치 회색조 */
+        [data-color="white"] .toggle-switch.active {
+            background: #6c757d;
+        }
+
+        .toggle-switch-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.active .toggle-switch-slider {
+            transform: translateX(20px);
+        }
+
+        /* 컬러 팔레트 스타일 */
+        .color-palette {
+            display: flex;
+            gap: 6px;
+            margin-left: 8px;
+        }
+
+        .color-option {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-option.active {
+            border-color: var(--link-color);
+            box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--link-color);
+        }
+
+        /* 화이트 테마 선택 시 회색 테두리 */
+        [data-color="white"] .color-option.white.active {
+            border-color: #6c757d;
+            box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px #6c757d;
+        }
+
+        .color-option.white {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+            border: 1px solid #ddd;
+        }
+
+        .color-option.pink {
+            background: linear-gradient(135deg, #ffe0f0 0%, #ffc9e0 100%);
+        }
+
+        .color-option.skyblue {
+            background: linear-gradient(135deg, #c9e8ff 0%, #a8d8f0 100%);
+        }
+
+        /* 다크모드에서 컬러 옵션 색상 변경 */
+        [data-theme="dark"] .color-option.white {
+            background: linear-gradient(135deg, #4a4a4a 0%, #3b3b3b 100%);
+            border: 1px solid #5a5a5a;
+        }
+
+        [data-theme="dark"] .color-option.pink {
+            background: linear-gradient(135deg, #7d5a70 0%, #62475b 100%);
+        }
+
+        [data-theme="dark"] .color-option.skyblue {
+            background: linear-gradient(135deg, #3f5266 0%, #314051 100%);
+        }
+
+        /* 테마 메뉴 화살표 */
+        .theme-menu-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .theme-menu-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        /* 테마 선택 버튼 */
+        .theme-item {
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .theme-item:hover {
+            background: var(--hover-bg) !important;
+            transform: translateX(4px);
+            border-color: var(--link-color) !important;
+        }
+
+        .code-theme-item {
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .code-theme-item:hover {
+            background: var(--hover-bg) !important;
+            border-color: var(--link-color) !important;
+        }
+
+        .code-theme-item.active,
+        .theme-item.active {
+            border-color: var(--link-color) !important;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--button-hover-bg) 100%) !important;
+            font-weight: 600;
+        }
+
+        /* 코드박스 테마 리스트 스타일 */
+        .code-theme-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .code-theme-item {
+            color: var(--text-primary);
+        }
+
+        .code-theme-item:hover {
+            background: var(--hover-bg) !important;
+            transform: translateX(4px);
+            border-color: var(--link-color) !important;
+        }
+
+        .code-theme-item.active {
+            border-color: var(--link-color) !important;
+            background: var(--hover-bg) !important;
+            font-weight: 600;
+        }
+
+        .category-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-left: auto;
+            /* 오른쪽으로 밀기 */
+        }
+
+        .category-badge.dev {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .category-badge.life {
+            background-color: #f1f8e9;
+            color: #689f38;
+        }
+
+        /* 다크모드 카테고리 배지 */
+        [data-theme="dark"] .category-badge.dev {
+            background-color: rgba(33, 150, 243, 0.2);
+            color: #64b5f6;
+        }
+
+        [data-theme="dark"] .category-badge.life {
+            background-color: rgba(139, 195, 74, 0.2);
+            color: #9ccc65;
+        }
+
+        /* 페이지 콘텐츠 카드 스타일 */
+        .page-post-card {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .page-post-card h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .page-post-card h3 a {
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: color 0.2s;
+        }
+
+        .page-post-card h3 a:hover {
+            color: #007bff;
+        }
+
+        .page-post-meta {
+            color: var(--text-tertiary);
+            font-size: 14px;
+            margin-top: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .page-post-meta .category-tag {
+            margin-left: 10px;
+            padding: 3px 10px;
+            background: var(--hover-bg);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .page-no-posts {
+            color: var(--text-tertiary);
+            text-align: center;
+            padding: 40px;
+            transition: color 0.3s ease;
+        }
+
+        .page-section-title {
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .profile-section {
+            background-color: var(--bg-tertiary);
+            padding: var(--spacing-inner);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-inner);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .profile-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--bg-secondary);
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .profile-name {
+            width: 100%;
+            padding: 8px 16px;
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            line-height: normal;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .profile-name svg {
+            position: absolute;
+            left: 16px;
+        }
+
+        .profile-name:hover {
+            background-color: var(--hover-bg);
+            border-color: var(--link-color);
+        }
+
+        .repo-button {
+            width: 100%;
+            padding: 8px 16px;
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.3s;
+            line-height: normal;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: relative;
+        }
+
+        .repo-button svg {
+            position: absolute;
+            left: 16px;
+        }
+
+        .repo-button:hover {
+            background-color: var(--hover-bg);
+            border-color: var(--link-color);
+        }
+
+        .content-center {
+            flex: 1;
+            background-color: var(--bg-tertiary);
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 본문 콘텐츠 스타일링 */
+        .content-center h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--link-color);
+            line-height: 1.3;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 화이트 테마일 때 h1 밑줄 회색조 */
+        [data-color="white"] .content-center h1 {
+            border-bottom-color: var(--border-secondary);
+        }
+
+        .content-center h2 {
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--link-color-light);
+            line-height: 1.4;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 화이트 테마일 때 h2 밑줄 회색조 */
+        [data-color="white"] .content-center h2 {
+            border-bottom-color: var(--border-color);
+        }
+
+        /* 화이트 테마일 때 hr 회색조 */
+        [data-color="white"] .content-center hr {
+            border-top-color: var(--border-color);
+        }
+
+        /* TOC 번호 스타일 */
+        .toc-number {
+            color: var(--link-color);
+        }
+
+        /* 화이트 테마일 때 TOC 번호 회색조 */
+        [data-color="white"] .toc-number {
+            color: #6c757d;
+        }
+
+        .content-center h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 24px;
+            margin-bottom: 12px;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .content-center h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .content-center p {
+            margin-bottom: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .content-center a {
+            color: #007bff;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .content-center a:hover {
+            color: #0056b3;
+            border-bottom-color: #0056b3;
+        }
+
+        .content-center ul,
+        .content-center ol {
+            margin-bottom: 16px;
+            padding-left: 28px;
+            line-height: 1.8;
+        }
+
+        .content-center li {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .content-center code {
+            background-color: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #e83e8c;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .content-center pre,
+        .content-center .highlight {
+            background-color: var(--bg-secondary);
+            padding: 0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* GitHub 테마 - 배경색 제거 (기본 테마 사용) */
+        [data-theme="light"][data-code-theme="github"] .content-center pre,
+        [data-theme="light"][data-code-theme="github"] .content-center .highlight {
+            border-color: #d0d7de;
+        }
+
+        [data-theme="light"][data-code-theme="github"] .content-center pre code,
+        [data-theme="light"][data-code-theme="github"] .content-center .highlight pre {
+            color: #24292e;
+        }
+
+        [data-theme="dark"][data-code-theme="github"] .content-center pre,
+        [data-theme="dark"][data-code-theme="github"] .content-center .highlight {
+            border-color: #30363d;
+        }
+
+        [data-theme="dark"][data-code-theme="github"] .content-center pre code,
+        [data-theme="dark"][data-code-theme="github"] .content-center .highlight pre {
+            color: #c9d1d9;
+        }
+
+        /* Monokai 테마 - 배경색 제거 (GitHub 배경 사용) */
+        [data-theme="light"][data-code-theme="monokai"] .content-center pre,
+        [data-theme="light"][data-code-theme="monokai"] .content-center .highlight {
+            border-color: #d0d7de;
+        }
+
+        [data-theme="light"][data-code-theme="monokai"] .content-center pre code,
+        [data-theme="light"][data-code-theme="monokai"] .content-center .highlight pre {
+            color: #3e3d32;
+        }
+
+        [data-theme="dark"][data-code-theme="monokai"] .content-center pre,
+        [data-theme="dark"][data-code-theme="monokai"] .content-center .highlight {
+            border-color: #30363d;
+        }
+
+        [data-theme="dark"][data-code-theme="monokai"] .content-center pre code,
+        [data-theme="dark"][data-code-theme="monokai"] .content-center .highlight pre {
+            color: #f8f8f2;
+        }
+
+        /* One Dark 테마 - 배경색 제거 (GitHub 배경 사용) */
+        [data-theme="light"][data-code-theme="onedark"] .content-center pre,
+        [data-theme="light"][data-code-theme="onedark"] .content-center .highlight {
+            border-color: #d0d7de;
+        }
+
+        [data-theme="light"][data-code-theme="onedark"] .content-center pre code,
+        [data-theme="light"][data-code-theme="onedark"] .content-center .highlight pre {
+            color: #383a42;
+        }
+
+        [data-theme="dark"][data-code-theme="onedark"] .content-center pre,
+        [data-theme="dark"][data-code-theme="onedark"] .content-center .highlight {
+            border-color: #30363d;
+        }
+
+        [data-theme="dark"][data-code-theme="onedark"] .content-center pre code,
+        [data-theme="dark"][data-code-theme="onedark"] .content-center .highlight pre {
+            color: #abb2bf;
+        }
+
+        /* Dracula 테마 - 배경색 제거 (GitHub 배경 사용) */
+        [data-theme="light"][data-code-theme="dracula"] .content-center pre,
+        [data-theme="light"][data-code-theme="dracula"] .content-center .highlight {
+            border-color: #d0d7de;
+        }
+
+        [data-theme="light"][data-code-theme="dracula"] .content-center pre code,
+        [data-theme="light"][data-code-theme="dracula"] .content-center .highlight pre {
+            color: #44475a;
+        }
+
+        [data-theme="dark"][data-code-theme="dracula"] .content-center pre,
+        [data-theme="dark"][data-code-theme="dracula"] .content-center .highlight {
+            border-color: #30363d;
+        }
+
+        [data-theme="dark"][data-code-theme="dracula"] .content-center pre code,
+        [data-theme="dark"][data-code-theme="dracula"] .content-center .highlight pre {
+            color: #f8f8f2;
+        }
+
+        .content-center pre code,
+        .content-center .highlight pre {
+            background-color: transparent;
+            padding: 12px;
+            display: block;
+            overflow-x: auto;
+            border: none;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .content-center .highlight {
+            padding: 0;
+        }
+
+        .content-center .highlight pre {
+            margin: 0;
+            padding: 12px;
+        }
+
+        /* 인라인 코드는 분홍색 유지 */
+        .content-center :not(pre)>code {
+            background-color: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            color: #e83e8c;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* 코드블럭 헤더 */
+        .code-header {
+            background-color: var(--code-header-bg);
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 12px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .code-language {
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            transition: color 0.3s ease;
+        }
+
+        .copy-button {
+            background-color: var(--button-bg);
+            border: 1px solid var(--border-secondary);
+            border-radius: 4px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-weight: 600;
+        }
+
+        .copy-button:hover {
+            background-color: var(--button-hover-bg);
+            border-color: var(--link-color);
+            color: var(--link-color);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .copy-button:active {
+            background-color: var(--button-active-bg);
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 1px 2px var(--shadow-color);
+        }
+
+        /* 줄번호 스타일 */
+        .content-center .highlight .rouge-table {
+            border: none;
+            margin: 0;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .content-center .highlight .rouge-table tbody {
+            border: none;
+        }
+
+        .content-center .highlight .rouge-table tr {
+            border: none;
+            background: transparent;
+        }
+
+        .content-center .highlight .rouge-table td {
+            border: none;
+            padding: 0;
+            background: transparent;
+        }
+
+        .content-center .highlight .rouge-table .rouge-gutter,
+        .content-center .highlight .rouge-table td.rouge-gutter,
+        .content-center .highlight .rouge-table td.gl {
+            padding: 0 20px 0 12px;
+            border-right: 1px solid var(--border-color);
+            user-select: none;
+            width: 1%;
+            vertical-align: top;
+            transition: border-color 0.3s ease;
+        }
+
+        .content-center .highlight .rouge-table .rouge-gutter pre,
+        .content-center .highlight .rouge-table td.rouge-gutter pre,
+        .content-center .highlight .rouge-table td.gl pre {
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            text-align: right;
+        }
+
+        .content-center .highlight .rouge-table .rouge-gutter .lineno,
+        .content-center .highlight .rouge-table td.rouge-gutter .lineno,
+        .content-center .highlight .rouge-table td.gl .lineno {
+            color: var(--text-tertiary);
+            padding: 0;
+            margin: 0;
+            line-height: 1.5;
+            transition: color 0.3s ease;
+        }
+
+        .content-center .highlight .rouge-table .rouge-code,
+        .content-center .highlight .rouge-table td.rouge-code,
+        .content-center .highlight .rouge-table td.code {
+            padding: 0 0 0 24px;
+            width: 99%;
+        }
+
+        .content-center .highlight .rouge-table .rouge-code pre,
+        .content-center .highlight .rouge-table td.rouge-code pre,
+        .content-center .highlight .rouge-table td.code pre {
+            padding: 0;
+            margin: 0;
+            background: transparent;
+        }
+
+        .content-center blockquote {
+            border-left: 4px solid #007bff;
+            padding-left: 16px;
+            margin: 20px 0;
+            color: var(--text-secondary);
+            font-style: italic;
+            background-color: var(--bg-secondary);
+            padding: 12px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .content-center hr {
+            border: none;
+            border-top: 2px solid var(--link-color-light);
+            margin: 30px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .content-center table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        .content-center table th,
+        .content-center table td {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .content-center table th {
+            background-color: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .content-center table tr:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .content-center img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-right {
+            flex: 0 0 250px;
+            transition: flex-basis 0.3s ease, opacity 0.3s ease 0.3s, margin 0.3s ease 0.3s;
+            overflow-y: auto;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-inner);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            opacity: 1;
+        }
+
+        .content-right::-webkit-scrollbar {
+            display: none;
+        }
+
+        .content-right.collapsed {
+            opacity: 0;
+            flex-basis: 0;
+            margin-left: calc(-1 * var(--spacing-inner));
+            transition: opacity 0.3s ease, flex-basis 0.3s ease 0.3s, margin 0.3s ease 0.3s;
+            pointer-events: none;
+        }
+
+        .content-right>*:first-child {
+            margin-top: 0;
+        }
+
+        .content-right>*:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 테마 아이템 호버 효과 */
+        .theme-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            border-color: var(--link-color) !important;
+        }
+
+        .theme-item.active {
+            border-color: var(--link-color) !important;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--button-hover-bg) 100%) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .code-theme-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            border-color: var(--link-color) !important;
+        }
+
+        .code-theme-item.active {
+            border-color: var(--link-color) !important;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--button-hover-bg) 100%) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .theme-menu-arrow {
+            display: inline-block;
+        }
+
+        .theme-main-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .theme-main-list[style*="display: block"],
+        .theme-main-list[style*="display:block"] {
+            max-height: 1000px;
+        }
+
+        /* 하단 레이아웃 */
+        .footer-section {
+            flex: 0 0 auto;
+            background-color: var(--bg-tertiary);
+            padding: var(--spacing-inner);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: var(--spacing-inner);
+            overflow: hidden;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-left {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: transparent;
+            transition: color 0.3s ease;
+        }
+
+        .footer-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background-color: transparent;
+            transition: color 0.3s ease;
+        }
+
+        .footer-right {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: transparent;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 상단 레이아웃 -->
+    <div class="header-section">
+        <div class="header-left">
+            <!-- 빈 공간 -->
+        </div>
+        <div class="header-center">
+            <a href="/" class="site-title" style="text-decoration: none;">QQPMZZ.GITHUB.IO</a>
+        </div>
+        <div class="header-right">
+            <div id="clock" class="clock-display">
+                <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 중단 레이아웃 (메인 콘텐츠) -->
+    <div class="content-section">
+        <!-- 왼쪽 사이드바 -->
+        <div class="content-left" id="leftSidebar">
+            <!-- 프로필 섹션 -->
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="https://github.com/qqpmzz.png" alt="QQPMZZ Profile">
+                </div>
+                <a href="https://github.com/qqpmzz" target="_blank" class="profile-name">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                    </svg>
+                    <span>QQPMZZ</span>
+                </a>
+                <button class="repo-button"
+                    onclick="window.open('https://github.com/qqpmzz?tab=repositories', '_blank')">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                    </svg>
+                    <span>Repositories</span>
+                </button>
+            </div>
+
+            <div class="sidebar-item">
+                <div class="sidebar-item-header">
+                    <a href="/categories/" style="text-decoration: none; flex: 1;">카테고리</a>
+                    <button class="item-collapse-button" onclick="toggleItem(this)">▶</button>
+                </div>
+                <div class="sidebar-item-content">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        {% assign dev_col = site.collections | where: "label", "dev" | first %}
+                        {% assign life_col = site.collections | where: "label", "life" | first %}
+
+                        {% assign dev_count = 0 %}
+                        {% for doc in dev_col.docs %}
+                        {% unless doc.url == '/dev/' or doc.url == '/dev/index.html' %}
+                        {% if doc.date %}
+                        {% assign dev_count = dev_count | plus: 1 %}
+                        {% endif %}
+                        {% endunless %}
+                        {% endfor %}
+
+                        {% assign life_count = 0 %}
+                        {% for doc in life_col.docs %}
+                        {% unless doc.url == '/life/' or doc.url == '/life/index.html' %}
+                        {% if doc.date %}
+                        {% assign life_count = life_count | plus: 1 %}
+                        {% endif %}
+                        {% endunless %}
+                        {% endfor %}
+
+                        {% if dev_count > 0 %}
+                        <li style="margin-bottom: 8px;">
+                            <div class="category-header" onclick="toggleCategoryList(this)">
+                                <span class="category-toggle">+</span>
+                                <span style="font-weight: 600; font-size: 14px;">개발 ({{ dev_count }})</span>
+                            </div>
+                            <ul style="list-style: none; padding-left: 26px; margin: 8px 0 0 0; display: none;">
+                                {% for doc in dev_col.docs %}
+                                {% unless doc.url == '/dev/' or doc.url == '/dev/index.html' %}
+                                {% if doc.date %}
+                                <li style="margin-bottom: 6px;">
+                                    <a href="{{ doc.url }}" class="category-item">
+                                        {{ doc.title }}
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% endunless %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+
+                        {% if life_count > 0 %}
+                        <li style="margin-bottom: 8px;">
+                            <div class="category-header" onclick="toggleCategoryList(this)">
+                                <span class="category-toggle">+</span>
+                                <span style="font-weight: 600; font-size: 14px;">일상 ({{ life_count }})</span>
+                            </div>
+                            <ul style="list-style: none; padding-left: 26px; margin: 8px 0 0 0; display: none;">
+                                {% for doc in life_col.docs %}
+                                {% unless doc.url == '/life/' or doc.url == '/life/index.html' %}
+                                {% if doc.date %}
+                                <li style="margin-bottom: 6px;">
+                                    <a href="{{ doc.url }}" class="category-item">
+                                        {{ doc.title }}
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% endunless %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-item">
+                <div class="sidebar-item-header">
+                    <a href="/recent/" style="text-decoration: none; flex: 1;">최신 글</a>
+                    <button class="item-collapse-button" onclick="toggleItem(this)">▶</button>
+                </div>
+                <div class="sidebar-item-content">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        {% assign dev_col = site.collections | where: "label", "dev" | first %}
+                        {% assign life_col = site.collections | where: "label", "life" | first %}
+                        {% assign all_docs = dev_col.docs | concat: life_col.docs | sort: 'date' | reverse %}
+
+                        {% for post in all_docs limit:5 %}
+                        {% unless post.url == '/dev/' or post.url == '/dev/index.html' or post.url == '/life/' or
+                        post.url == '/life/index.html' %}
+                        {% if post.date %}
+                        <li>
+                            <a href="{{ post.url }}" class="recent-post-card">
+                                <div class="recent-post-title">{{ post.title }}</div>
+                                <div class="recent-post-meta">
+                                    <span>{{ post.date | date: "%Y.%m.%d" }}</span>
+                                    {% if post.collection == 'dev' %}
+                                    <span class="category-badge dev">개발</span>
+                                    {% elsif post.collection == 'life' %}
+                                    <span class="category-badge life">일상</span>
+                                    {% endif %}
+                                </div>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% endunless %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 본문 -->
+        <div class="content-center">
+            {{ content }}
+        </div>
+
+        <!-- 오른쪽 사이드바 -->
+        <div class="content-right" id="rightSidebar">
+            <!-- TOC 섹션 -->
+            <div class="sidebar-item">
+                <div class="sidebar-item-header">
+                    <span style="font-size: 16px; font-weight: 700; color: var(--toc-title-color);">📑 Table of
+                        Contents</span>
+                    <button class="item-collapse-button" onclick="toggleItem(this)">▶</button>
+                </div>
+                <div class="sidebar-item-content" id="tocContent">
+                    <div id="toc-list" style="list-style: none; padding: 0; margin: 0;">
+                        <!-- TOC will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 설정 섹션 -->
+            <div class="sidebar-item">
+                <div class="sidebar-item-header">
+                    <span style="font-size: 16px; font-weight: 700; color: var(--text-primary);">⚙️ 설정</span>
+                    <button class="item-collapse-button" onclick="toggleItem(this)">▶</button>
+                </div>
+                <div class="sidebar-item-content">
+                    <!-- 라이트/다크 모드 토글 -->
+                    <div style="margin-bottom: 16px;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-tertiary); border-radius: 8px; border: 1px solid var(--border-color);">
+                            <span style="font-size: 14px; font-weight: 500;">
+                                <span id="mode-label">☀️ 라이트 모드</span>
+                            </span>
+                            <div class="toggle-switch" id="toggleThemeMode">
+                                <div class="toggle-switch-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 사이드바 토글 -->
+                    <div style="margin-bottom: 16px;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-tertiary); border-radius: 8px; border: 1px solid var(--border-color);">
+                            <span style="font-size: 14px; font-weight: 500;">사이드바 표시</span>
+                            <div class="toggle-switch" id="toggleLeftSidebar">
+                                <div class="toggle-switch-slider"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 테마 선택 -->
+                    <div style="margin-bottom: 16px;">
+                        <div
+                            style="font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                            <span>🎨</span>
+                            <span>테마</span>
+                        </div>
+
+                        <!-- 라이트 모드 테마 그룹 -->
+                        <div id="light-themes"
+                            style="display: grid; grid-template-columns: 1fr; gap: 6px; margin-bottom: 12px;">
+                            <div
+                                style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500;">
+                                라이트 모드</div>
+                            <div class="theme-item light-white active" data-theme="light" data-color="white" style="padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 13px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">☁️</span>
+                                <span>클린 화이트</span>
+                            </div>
+                            <div class="theme-item light-pink" data-theme="light" data-color="pink" style="padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 13px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">🌸</span>
+                                <span>소프트 핑크</span>
+                            </div>
+                            <div class="theme-item light-skyblue" data-theme="light" data-color="skyblue" style="padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 13px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">🌊</span>
+                                <span>오션 블루</span>
+                            </div>
+                        </div>
+
+                        <!-- 다크 모드 테마 그룹 -->
+                        <div id="dark-themes" style="display: none; grid-template-columns: 1fr; gap: 6px;">
+                            <div
+                                style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500;">
+                                다크 모드</div>
+                            <div class="theme-item dark-white" data-theme="dark" data-color="white" style="padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 13px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">⚫</span>
+                                <span>미드나잇</span>
+                            </div>
+                            <div class="theme-item dark-pink" data-theme="dark" data-color="pink" style="padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 13px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">🌹</span>
+                                <span>로즈 다크</span>
+                            </div>
+                            <div class="theme-item dark-skyblue" data-theme="dark" data-color="skyblue" style="padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 13px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); display: flex; align-items: center; gap: 8px;">
+                                <span style="font-size: 16px;">🌌</span>
+                                <span>딥 오션</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 코드 테마 -->
+                    <div>
+                        <div
+                            style="font-size: 14px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+                            <span>💻</span>
+                            <span>코드 테마</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                            <div class="code-theme-item github active" data-code-theme="github" style="padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); text-align: center; font-weight: 500;">
+                                GitHub
+                            </div>
+                            <div class="code-theme-item monokai" data-code-theme="monokai" style="padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); text-align: center; font-weight: 500;">
+                                Monokai
+                            </div>
+                            <div class="code-theme-item onedark" data-code-theme="onedark" style="padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); text-align: center; font-weight: 500;">
+                                One Dark
+                            </div>
+                            <div class="code-theme-item dracula" data-code-theme="dracula" style="padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+                                        transition: all 0.3s ease; border: 2px solid var(--border-color); 
+                                        background: var(--bg-tertiary); text-align: center; font-weight: 500;">
+                                Dracula
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- 하단 레이아웃 -->
+    <div class="footer-section">
+        <div class="footer-left">
+            <span>© 2025 QQPMZZ</span>
+        </div>
+        <div class="footer-center">
+            <span>Made with Jekyll</span>
+        </div>
+        <div class="footer-right">
+            <a href="#" class="footer-link">Privacy</a>
+            <a href="#" class="footer-link">Terms</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 메뉴 버튼 제거됨
+
+            // 사이드바 토글 (오른쪽 메뉴에서)
+            const toggleLeftSidebar = document.getElementById('toggleLeftSidebar');
+            const sidebarToggleText = document.getElementById('sidebarToggleText');
+            if (toggleLeftSidebar) {
+                // 초기 상태 설정
+                const sidebar = document.getElementById('leftSidebar');
+                if (!sidebar.classList.contains('collapsed')) {
+                    toggleLeftSidebar.classList.add('active');
+                    if (sidebarToggleText) sidebarToggleText.textContent = '사이드바 숨기기';
+                } else {
+                    if (sidebarToggleText) sidebarToggleText.textContent = '사이드바 표시';
+                }
+
+                toggleLeftSidebar.addEventListener('click', function () {
+                    const headerStatus = document.getElementById('leftSidebarStatus');
+                    sidebar.classList.toggle('collapsed');
+                    toggleLeftSidebar.classList.toggle('active');
+
+                    if (sidebar.classList.contains('collapsed')) {
+                        if (headerStatus) headerStatus.textContent = '▶';
+                        if (sidebarToggleText) sidebarToggleText.textContent = '사이드바 표시';
+                    } else {
+                        if (headerStatus) headerStatus.textContent = '◀';
+                        if (sidebarToggleText) sidebarToggleText.textContent = '사이드바 숨기기';
+                    }
+                });
+            }
+
+            // 오른쪽 사이드바의 테마 관리
+            const htmlElement = document.documentElement;
+
+            // 테마 선택 (통합된 6개 테마)
+            const themeItems = document.querySelectorAll('.theme-item');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedColor = localStorage.getItem('color') || 'white';
+            htmlElement.setAttribute('data-theme', savedTheme);
+            htmlElement.setAttribute('data-color', savedColor);
+
+            // 테마 그룹 표시 함수
+            function updateThemeGroups(theme) {
+                const lightThemes = document.getElementById('light-themes');
+                const darkThemes = document.getElementById('dark-themes');
+                const modeLabel = document.getElementById('mode-label');
+                const toggleThemeMode = document.getElementById('toggleThemeMode');
+
+                if (theme === 'light') {
+                    lightThemes.style.display = 'grid';
+                    darkThemes.style.display = 'none';
+                    if (modeLabel) modeLabel.textContent = '☀️ 라이트 모드';
+                    if (toggleThemeMode) toggleThemeMode.classList.remove('active');
+                } else {
+                    lightThemes.style.display = 'none';
+                    darkThemes.style.display = 'grid';
+                    if (modeLabel) modeLabel.textContent = '🌙 다크 모드';
+                    if (toggleThemeMode) toggleThemeMode.classList.add('active');
+                }
+            }
+
+            // 초기 테마 그룹 표시
+            updateThemeGroups(savedTheme);
+
+            // 초기 활성화 상태 설정
+            themeItems.forEach(item => {
+                if (item.dataset.theme === savedTheme && item.dataset.color === savedColor) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // 라이트/다크 모드 토글
+            const toggleThemeMode = document.getElementById('toggleThemeMode');
+            if (toggleThemeMode) {
+                toggleThemeMode.addEventListener('click', function () {
+                    const currentTheme = htmlElement.getAttribute('data-theme');
+                    const currentColor = htmlElement.getAttribute('data-color');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+                    // 테마 변경
+                    htmlElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+
+                    // 테마 그룹 업데이트
+                    updateThemeGroups(newTheme);
+
+                    // 같은 색상의 테마 활성화
+                    themeItems.forEach(item => {
+                        if (item.dataset.theme === newTheme && item.dataset.color === currentColor) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                });
+            }
+
+            // 테마 선택 이벤트
+            themeItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const selectedTheme = this.dataset.theme;
+                    const selectedColor = this.dataset.color;
+
+                    // 모든 옵션에서 active 제거
+                    themeItems.forEach(opt => opt.classList.remove('active'));
+
+                    // 선택한 옵션에 active 추가
+                    this.classList.add('active');
+
+                    // 테마 적용
+                    htmlElement.setAttribute('data-theme', selectedTheme);
+                    htmlElement.setAttribute('data-color', selectedColor);
+                    localStorage.setItem('theme', selectedTheme);
+                    localStorage.setItem('color', selectedColor);
+                });
+            });
+
+            // 코드박스 테마 선택
+            const codeThemeItems = document.querySelectorAll('.code-theme-item');
+            const savedCodeTheme = localStorage.getItem('codeTheme') || 'github';
+            htmlElement.setAttribute('data-code-theme', savedCodeTheme);
+
+            // 초기 활성화 상태 설정
+            codeThemeItems.forEach(item => {
+                if (item.dataset.codeTheme === savedCodeTheme) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // 코드박스 테마 선택 이벤트
+            codeThemeItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    const selectedCodeTheme = this.dataset.codeTheme;
+
+                    // 모든 옵션에서 active 제거
+                    codeThemeItems.forEach(opt => opt.classList.remove('active'));
+
+                    // 선택한 옵션에 active 추가
+                    this.classList.add('active');
+
+                    // 코드박스 테마 적용
+                    htmlElement.setAttribute('data-code-theme', selectedCodeTheme);
+                    localStorage.setItem('codeTheme', selectedCodeTheme);
+                });
+            });
+
+            // 실시간 시계 업데이트
+            function updateClock() {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+
+            // 1초마다 시계 업데이트
+            setInterval(updateClock, 1000);
+            // 페이지 로드 시 즉시 실행
+            updateClock();
+
+            // 각 항목 접기/펼치기 함수 (전역)
+            window.toggleItem = function (button) {
+                const content = button.parentElement.nextElementSibling;
+                content.classList.toggle('collapsed');
+
+                // 아이콘 회전
+                if (content.classList.contains('collapsed')) {
+                    button.style.transform = 'rotate(0deg)';
+                } else {
+                    button.style.transform = 'rotate(90deg)';
+                }
+            };
+
+            // 테마 메인 메뉴 토글
+            window.toggleThemeMainMenu = function (header) {
+                const list = header.nextElementSibling;
+                const arrow = header.querySelector('.theme-menu-arrow');
+
+                if (list.style.display === 'none' || list.style.display === '') {
+                    list.style.display = 'flex';
+                    arrow.classList.add('open');
+                } else {
+                    list.style.display = 'none';
+                    arrow.classList.remove('open');
+                }
+            };
+
+            // 코드블럭 개선 함수
+            function enhanceCodeBlocks() {
+                // Rouge가 생성한 .highlight 블럭 처리
+                const highlightBlocks = document.querySelectorAll('.content-center .highlight');
+
+                highlightBlocks.forEach((highlightDiv) => {
+                    // 이미 처리된 블럭은 건너뛰기
+                    if (highlightDiv.querySelector('.code-header')) {
+                        return;
+                    }
+
+                    // 언어 감지 (Rouge는 language-python highlighter-rouge 형식 사용)
+                    let language = 'text';
+                    const className = highlightDiv.className;
+                    const match = className.match(/language-(\w+)/);
+                    if (match) {
+                        language = match[1];
+                    }
+
+                    const pre = highlightDiv.querySelector('pre');
+                    const code = pre ? pre.querySelector('code') : null;
+
+                    if (!pre || !code) return;
+
+                    // 헤더 생성
+                    const header = document.createElement('div');
+                    header.className = 'code-header';
+
+                    // 언어명 표시
+                    const languageSpan = document.createElement('span');
+                    languageSpan.className = 'code-language';
+                    languageSpan.textContent = language;
+
+                    // 복사 버튼
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-button';
+                    copyButton.innerHTML = '📋 Copy';
+                    copyButton.onclick = function () {
+                        // 줄번호 제외하고 코드만 복사
+                        const codeCell = highlightDiv.querySelector('.rouge-code');
+                        const codeText = codeCell ? codeCell.textContent : code.textContent;
+                        navigator.clipboard.writeText(codeText).then(() => {
+                            // 복사 성공 (CSS :active로 표시)
+                        }).catch(err => {
+                            console.error('복사 실패:', err);
+                        });
+                    };
+
+                    header.appendChild(languageSpan);
+                    header.appendChild(copyButton);
+
+                    // highlight div 맨 앞에 헤더 추가
+                    highlightDiv.insertBefore(header, pre);
+                });
+
+                // 일반 코드블럭도 처리 (Rouge 없이 작성된 경우)
+                const codeBlocks = document.querySelectorAll('.content-center pre code');
+
+                codeBlocks.forEach((codeBlock) => {
+                    const pre = codeBlock.parentElement;
+
+                    // .highlight 안에 있으면 이미 처리됨
+                    if (pre.closest('.highlight')) {
+                        return;
+                    }
+
+                    // 이미 처리된 블럭은 건너뛰기
+                    if (pre.querySelector('.code-header')) {
+                        return;
+                    }
+
+                    // 언어 감지
+                    let language = 'text';
+                    const className = codeBlock.className;
+                    const match = className.match(/language-(\w+)/);
+                    if (match) {
+                        language = match[1];
+                    } else if (!className.includes('language-')) {
+                        // class가 없으면 language-text 추가
+                        codeBlock.classList.add('language-text');
+                        pre.classList.add('language-text');
+                    }
+
+                    // 헤더 생성
+                    const header = document.createElement('div');
+                    header.className = 'code-header';
+
+                    // 언어명 표시
+                    const languageSpan = document.createElement('span');
+                    languageSpan.className = 'code-language';
+                    languageSpan.textContent = language;
+
+                    // 복사 버튼
+                    const copyButton = document.createElement('button');
+                    copyButton.className = 'copy-button';
+                    copyButton.innerHTML = '📋 Copy';
+                    copyButton.onclick = function () {
+                        const code = codeBlock.textContent;
+                        navigator.clipboard.writeText(code).then(() => {
+                            // 복사 성공 (CSS :active로 표시)
+                        }).catch(err => {
+                            console.error('복사 실패:', err);
+                        });
+                    };
+
+                    header.appendChild(languageSpan);
+                    header.appendChild(copyButton);
+
+                    // pre 요소 앞에 헤더 추가
+                    pre.insertBefore(header, codeBlock);
+                });
+            }
+
+            // TOC 생성 함수
+            window.generateTOC = function () {
+                const contentCenter = document.querySelector('.content-center');
+                const tocList = document.getElementById('toc-list');
+
+                if (!contentCenter || !tocList) return;
+
+                // h1, h2, h3 태그 찾기
+                const headings = contentCenter.querySelectorAll('h1, h2, h3');
+
+                if (headings.length === 0) {
+                    const noTocMessage = document.createElement('p');
+                    noTocMessage.style.color = 'var(--text-tertiary)';
+                    noTocMessage.style.fontSize = '13px';
+                    noTocMessage.style.margin = '0';
+                    noTocMessage.textContent = '목차가 없습니다.';
+                    tocList.appendChild(noTocMessage);
+                    return;
+                }
+
+                let h1Count = 0;
+                let h2Count = 0;
+                let h3Count = 0;
+                let tocHTML = '';
+
+                headings.forEach((heading, index) => {
+                    // ID가 없으면 생성
+                    if (!heading.id) {
+                        heading.id = 'heading-' + index;
+                    }
+
+                    const level = heading.tagName.toLowerCase();
+                    const text = heading.textContent;
+
+                    // 들여쓰기 - 계층 구조를 명확하게
+                    // h1: 들여쓰기 없음
+                    // h2: 20px 들여쓰기
+                    // h3: 40px 들여쓰기
+                    const indent = level === 'h1' ? '0px' : level === 'h2' ? '20px' : '40px';
+
+                    // 번호 계산
+                    let number = '';
+                    let fontWeight = '400';
+                    let fontSize = '13px';
+
+                    if (level === 'h1') {
+                        h1Count++;
+                        h2Count = 0;
+                        h3Count = 0;
+                        number = h1Count + '. ';
+                        fontWeight = '700';
+                        fontSize = '14px';
+                    } else if (level === 'h2') {
+                        h2Count++;
+                        h3Count = 0;
+                        number = h2Count + '. ';
+                        fontWeight = '600';
+                        fontSize = '13px';
+                    } else if (level === 'h3') {
+                        h3Count++;
+                        number = h3Count + '. ';
+                        fontWeight = '400';
+                        fontSize = '12px';
+                    }
+
+                    const linkClass = 'toc-link toc-link-' + level;
+
+                    // h1, h2, h3 모두 테두리 없이 깔끔하게
+                    const borderStyle = level === 'h1'
+                        ? 'margin-top: 8px; margin-bottom: 8px;'
+                        : level === 'h2'
+                            ? 'margin-bottom: 4px; margin-top: 4px;'
+                            : 'margin-bottom: 2px; margin-top: 2px;';
+
+                    const bgColor = level === 'h1'
+                        ? 'var(--bg-tertiary)'
+                        : level === 'h2'
+                            ? 'var(--bg-tertiary)'
+                            : 'transparent';
+
+                    // 패딩 설정 - 들여쓰기와는 별개로 내부 여백
+                    const paddingLeft = level === 'h1' ? '10px' : level === 'h2' ? '10px' : '10px';
+
+                    // 기본 텍스트 색상 - 부드러운 회색
+                    const defaultColor = 'var(--text-secondary)';
+
+                    tocHTML += `
+                    <div style="margin-left: ${indent}; ${borderStyle}">
+                        <a href="#${heading.id}" class="${linkClass}"
+                           style="text-decoration: none; 
+                                  font-size: ${fontSize}; 
+                                  font-weight: ${fontWeight}; 
+                                  display: flex;
+                                  align-items: center;
+                                  padding: 6px ${paddingLeft}; 
+                                  transition: all 0.2s ease; 
+                                  border-radius: 6px; 
+                                  color: ${defaultColor};
+                                  background: ${bgColor};
+                                  border: 1px solid ${level === 'h1' || level === 'h2' ? 'var(--border-color)' : 'transparent'};"
+                           onmouseover="this.style.color='var(--link-color)'; 
+                                        this.style.backgroundColor='var(--hover-bg)'; 
+                                        this.style.transform='translateX(4px)';
+                                        this.style.borderColor='var(--link-color)';
+                                        this.style.boxShadow='0 2px 4px var(--shadow-color)';"
+                           onmouseout="this.style.color='${defaultColor}'; 
+                                       this.style.backgroundColor='${bgColor}'; 
+                                       this.style.transform='translateX(0)';
+                                       this.style.borderColor='${level === 'h1' || level === 'h2' ? 'var(--border-color)' : 'transparent'}';
+                                       this.style.boxShadow='none';">
+                            <span class="toc-number" style="font-weight: 700; 
+                                         margin-right: 8px;
+                                         min-width: 24px;
+                                         display: inline-block;">${number}</span>
+                            <span style="flex: 1;">${text}</span>
+                        </a>
+                    </div>
+                `;
+                });
+
+                tocList.innerHTML = tocHTML;
+
+                // TOC 링크 클릭 시 스크롤 이벤트
+                tocList.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href').substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+            };
+
+            // 카테고리 목록 토글 함수 (전역)
+            window.toggleCategoryList = function (element) {
+                const postList = element.nextElementSibling;
+                const toggleButton = element.querySelector('.category-toggle');
+
+                if (postList.style.display === 'none' || postList.style.display === '') {
+                    postList.style.display = 'block';
+                    toggleButton.textContent = '−';
+                } else {
+                    postList.style.display = 'none';
+                    toggleButton.textContent = '+';
+                }
+            };
+
+            // 페이지 로드 시 모든 항목의 초기 상태 설정
+            document.querySelectorAll('.sidebar-item').forEach(function (item) {
+                const button = item.querySelector('.item-collapse-button');
+                const content = item.querySelector('.sidebar-item-content');
+
+                if (!content.classList.contains('collapsed')) {
+                    button.style.transform = 'rotate(90deg)';
+                }
+            });
+
+            // TOC 생성
+            generateTOC();
+
+            // 코드블럭 처리
+            enhanceCodeBlocks();
+
+        }); // DOMContentLoaded 닫기
+    </script>
+</body>
+
+</html>
